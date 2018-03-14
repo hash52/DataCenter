@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DataCenter</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <%= link_to "home", root_path %>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <% if logged_in? %>
+              <li>
+                <%= link_to 'ログアウト', logout_path, method: :delete %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to '登録', new_user_path %>
+              </li>
+              <li>
+                <%= link_to 'ログイン', login_path %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+     </nav>
+
+    <!-- Alert whether log in is success or not. -->
+    <% flash.each do |message_type, message| %>
+      <%= content_tag(:div, message, class: "alert alert-#{message_type}") %>
+    <% end %>
+
+    <%= yield %>
+
+    <%= yield :footer %>
+
+    <%= debug(params) if Rails.env.development? %>
+  </body>
+</html>

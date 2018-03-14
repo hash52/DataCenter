@@ -1,0 +1,12 @@
+<h1 class="page-header">Storage</h1>
+<%= form_for @datafile do |f| %>
+  <div class="form-group" >
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="form-group" >
+    <%= f.file_field :datafile %>
+  </div>
+  <%= f.submit "Send" %>
+<% end %>
+<%= render partial: "datatable" %>

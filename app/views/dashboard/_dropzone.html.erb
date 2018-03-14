@@ -1,0 +1,15 @@
+<%= form_tag datafiles_path, class: "dropzone", id: "upload-dropzone" do %>
+  <div class="fallback">
+    <%= file_field_tag 'datafile[datafile]' %>
+  </div>
+<% end %>
+
+<% content_for :footer do %>
+<script>
+Dropzone.autoDiscover = false
+
+var DatafileDropzone = new Dropzone("#upload-dropzone", {
+  paramName: 'datafile[datafile]'
+})
+</script>
+<% end %>
