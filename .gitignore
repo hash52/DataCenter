@@ -24,3 +24,5 @@
 
 # My gitignore
 .env
+
+/public/uploaders/*

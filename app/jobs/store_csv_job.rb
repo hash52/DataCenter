@@ -10,13 +10,11 @@ class StoreCsvJob < ApplicationJob
     csv_text = File.read(url)
     csv = CSV.parse(csv_text, headers: true)
 
-    # Create new database dynamically
-    unless ActiveRecord::Base.table_exists? name_sym
-      connection = ActiveRecord::Base.connection
-      connection.create_table name_sym do |t|
-        csv.headers.each do |col|
-          t.string col.to_sym
-        end
+     # Create new database dynamically
+    connection = ActiveRecord::Base.connection
+    connection.create_table name_sym do |t|
+      csv.headers.each do |col|
+        t.string col.to_sym
       end
     end
 
