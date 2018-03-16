@@ -4,25 +4,25 @@ class StoreCsvJob < ApplicationJob
 
   def perform(name, url)
 
-    url = "./public"+url
-    name_sym = name.to_sym
+    url = "./public" + url
+    table_name = "#{name}Temporary".camelcase
 
     csv_text = File.read(url)
     csv = CSV.parse(csv_text, headers: true)
 
      # Create new database dynamically
     connection = ActiveRecord::Base.connection
-    connection.create_table name_sym do |t|
+    connection.create_table table_name do |t|
       csv.headers.each do |col|
-        t.string col.to_sym
+        t.string col
       end
     end
 
     # Define model based on created database
     klass = Class.new(ActiveRecord::Base) do |c|
-      c.table_name = name
+      c.table_name = table_name
     end
-    Object.const_defined?(name, klass)
+    Object.const_set table_name, klass
 
     # Register csv data to database
     csv.each do |row|
@@ -30,7 +30,7 @@ class StoreCsvJob < ApplicationJob
       attributes = row.to_hash.slice(*csv.headers)
 
       # Resister data to db
-      klass.create!(attributes)
+      klass.create! attributes
     end
   end
 end
