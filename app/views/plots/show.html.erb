@@ -1,0 +1,20 @@
+<div id='chart'></div>
+<p><%= @x_data %></p>
+<script type='text/javascript'>
+var x_column = '<%= j @x_column %>',
+    y_column = '<%= j @y_column %>',
+    x_data = <%== @x_data %>,
+    y_data = <%== @y_data %>
+
+var chart = c3.generate({
+  bindto: '#chart',
+
+  data: {
+    columns: [
+      x_data,
+      y_data
+    ]
+  }
+});
+</script>
+

@@ -52,8 +52,9 @@ ActiveRecord::Schema.define(version: 20180318001707) do
   end
 
   create_table "plots", force: :cascade do |t|
+    t.integer "datafile_id"
     t.string "title"
-    t.string "type"
+    t.string "plot_type"
     t.string "x_column"
     t.string "y_column"
     t.datetime "created_at", null: false

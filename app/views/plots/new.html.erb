@@ -1,12 +1,12 @@
 <h1 class="page-header">グラフ作成</h1>
-<%= form_for @plot, url: {controller: :plots, action: :create} do |f| %>
+<%= form_for @plot, url: {action: :create} do |f| %>
   <div class="form-group">
     <%= f.label "タイトル" %>
     <%= f.text_field :title %>
   </div>
   <div class="form-group">
     <%= f.label "グラフタイプ" %>
-    <%= f.select :type, [[:line, :line]] %>
+    <%= f.select :plot_type, [[:line, :line]] %>
   </div>
   <div class="form-group">
     <%= f.label "x軸に使用するデータ" %>
@@ -18,10 +18,3 @@
   </div>
   <%= f.submit "Create" %>
 <% end %>
-
-<% if @type %>
-  <div class="graph-area">
-    <p><%= @x_data %></p>
-  </div>
-<% end %>
-

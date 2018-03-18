@@ -10,16 +10,6 @@ class DatafilesController < ApplicationController
     @datafiles = current_user.datafile.all
   end
 
-  def show
-    # store current datafile id
-    session[:datafile_id] = params[:id]
-
-    @plot = Plot.new
-    current_data = Datafile.find_by(id: params[:id]).datum
-    @columns = current_data.distinct.pluck(:key)
-      
-  end
-
   def create 
     current_user ||= User.find_by(id: session[:user_id])
     current_file ||= current_user.datafile.create(datafile_params)
@@ -27,6 +17,7 @@ class DatafilesController < ApplicationController
       datafile_id = current_file.id
       StoreCsvJob.perform_later(datafile_id)
      
+      session[:datafile_id] = current_file.id
       redirect_to datafiles_path
     else
       flash.now[:danger] = "データの登録に失敗しました"

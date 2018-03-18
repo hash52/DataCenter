@@ -56,6 +56,10 @@ gem 'delayed_job_active_record'
 # daemons
 gem 'daemons'
 
+# for c3
+gem 'c3-rails'
+gem 'd3-rails', '~> 3.5.17'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -1,8 +1,9 @@
 class Plot < ApplicationRecord
+  validates :datafile_id, presence: true
   validates :title, presence: true
-  validates :type, presence: true
+  validates :plot_type, presence: true
   validates :x_column, presence: true
   validates :y_column, presence: true
 
-  belongs_to :dashboard
+  belongs_to :datafile
 end

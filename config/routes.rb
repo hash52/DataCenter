@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   resources 'users'
   resources 'datafiles'
+  resources 'plots'
   resources 'dashboard'
 end

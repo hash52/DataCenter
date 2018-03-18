@@ -1,0 +1,10 @@
+<% @plots.each do |p| %>
+  <div class="dashboard-box">
+    <p><%= p.title %></p>
+    <p><%= p.plot_type %></p>
+    <p><%= p.x_column %></p>
+    <p><%= p.y_column %></p>
+    <%= link_to "Show", plot_path(p) %>
+  </div>
+<% end %>
+<%= link_to "create", new_plot_path %>
