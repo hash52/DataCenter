@@ -9,4 +9,17 @@
   </div>
   <%= f.submit "Send" %>
 <% end %>
-<%= render partial: "datatable" %>
+
+<br>
+
+<h1 class="page-header">Storing Data</h1>
+<% if @datafiles.exists? %>
+  <% @datafiles.each do |data| %>
+    <div class="row">
+      <div class="dashboard-box col-md-2">
+        <p class="text-left"><%= data.name %></p>
+        <p class="text-right"><%= link_to "Show", datafile_path(data) %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

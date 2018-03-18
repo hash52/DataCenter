@@ -37,17 +37,15 @@
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
             <% if @path.is("dashboard#index") %>
-              <li class="active"><%= link_to "Overview", "" %></li>
+              <li class="active"><%= link_to "Dashboard", "" %></li>
             <% else %>
-              <li><%= link_to "Overview", dashboard_index_path %></li>
+              <li><%= link_to "Dashboard", dashboard_index_path %></li>
             <% end %>
             <% if @path.is("datafiles#index") %>
               <li class="active"><%= link_to "Datas", "" %></li>
             <% else %>
               <li><%= link_to "Datas", datafiles_path %></li>
             <% end %>
-            <li><%= link_to "Analystics", "#" %></li>
-            <li><%= link_to "Export", "#" %></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 dashboard-main">

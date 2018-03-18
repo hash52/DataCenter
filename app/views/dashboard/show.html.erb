@@ -1,0 +1,11 @@
+<h1 class="page-header">グラフ作成</h1>
+<%= form_for @plot, url: {action: :create} do |f| %>
+  <div class="form-group">
+    <%= f.label "タイトル" %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="form-group">
+    <%= f.label "x軸に使用するデータ" %>
+    <%= f.select :x_datafile, @datafiles.all.collect { |d| [d.name, d.name] } %>
+  </div>
+<% end %>

@@ -1,0 +1,22 @@
+<h1 class="page-header">新規ダッシュボード作成</h1>
+<%= form_for @dashboard, url: {action: :create} do |f| %>
+  <div class="form-group" >
+    <%= f.label "ダッシュボード名" %>
+    <%= f.text_field :name %>
+  </div>
+  <%= f.submit "Send" %>
+<% end %>
+
+<br>
+
+<h1 class="page-header">ダッシュボード一覧</h1>
+<% if @dashboards.exists? %>
+  <% @dashboards.each do |board| %>
+    <div class="row">
+      <div class="dashboard-box col-md-2">
+        <p class="text-left"><%= board.name %></p>
+        <p class="text-right"><%= link_to "Show", dashboard_path(board) %></p>
+      </div>
+    </div>
+  <% end %>
+<% end %>

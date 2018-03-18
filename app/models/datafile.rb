@@ -6,4 +6,6 @@ class Datafile < ApplicationRecord
   mount_uploader :datafile, DataFileUploader
 
   belongs_to :user
+  has_many :datum
+  has_many :plot
 end

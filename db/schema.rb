@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312133134) do
+ActiveRecord::Schema.define(version: 20180318001707) do
 
   create_table "dashboards", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "data", force: :cascade do |t|
+    t.integer "datafile_id"
+    t.integer "index"
+    t.string "key"
+    t.string "value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -40,6 +49,15 @@ ActiveRecord::Schema.define(version: 20180312133134) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
+  end
+
+  create_table "plots", force: :cascade do |t|
+    t.string "title"
+    t.string "type"
+    t.string "x_column"
+    t.string "y_column"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
