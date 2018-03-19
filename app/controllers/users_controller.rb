@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to dashboard_index_path
+      redirect_to datafiles_path
     else
       flash.now[:alert] = '登録に失敗しました'
       render :new

@@ -36,11 +36,6 @@
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <% if @path.is("dashboard#index") %>
-              <li class="active"><%= link_to "Dashboard", "" %></li>
-            <% else %>
-              <li><%= link_to "Dashboard", dashboard_index_path %></li>
-            <% end %>
             <% if @path.is("datafiles#index") %>
               <li class="active"><%= link_to "Datas", "" %></li>
             <% else %>
