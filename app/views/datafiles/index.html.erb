@@ -14,12 +14,46 @@
 
 <h1 class="page-header">Storing Data</h1>
 <% if @datafiles.exists? %>
-  <% @datafiles.each do |data| %>
+  <% @datafiles.reverse_each do |datafile| %>
     <div class="row">
-      <div class="dashboard-box col-md-2">
-        <p class="text-left"><%= data.name %></p>
-        <p class="text-right"><%= link_to "Show", plots_path %></p>
+      <div class="datafile-box col-md-3">
+        <p class="text-left"><%= datafile.name %></p>
+        <% if datafile.reading %>
+          <div id="reading-<%= datafile.id %>">
+            <%= image_tag 'icons/ajax-loader', alt: 'loading', class: 'img-responsive center-block' %>
+          </div>
+        <% end %>
+        <% if datafile.reading %>
+          <div hidden id="show-<%= datafile.id %>" class="text-right">
+            <p><%= link_to "delete", datafile, method: :delete %></p>
+            <p><%= link_to "Show", plots_path %></p>
+          </div>
+        <% else %>
+          <div id="show-<%= datafile.id %>" class="text-right">
+            <p><%= link_to "delete", datafile, method: :delete %></p>
+            <p><%= link_to "Show", plots_path %></p>
+          </div>
+        <% end %>
       </div>
     </div>
   <% end %>
 <% end %>
+
+<script type="text/javascript">
+$(function() {
+  setInterval(function() {
+    $.getJSON(
+      '/api/datafiles',
+      null,
+      function(json, status) {
+        var body = json['body'];
+        $.each(body, function(i, id) {
+          $('#reading-'+id).remove()
+          $('reading-'+id).remove()
+          $('#show-'+id).removeAttr('hidden')
+        });
+      }
+    );
+  }, 3000);
+});
+</script>

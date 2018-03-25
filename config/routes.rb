@@ -8,7 +8,12 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
 
   resources 'users'
+
   resources 'datafiles'
+  namespace :api, { format: 'json' } do
+    resources :datafiles
+  end
+
   resources 'plots'
   resources 'dashboard'
 end

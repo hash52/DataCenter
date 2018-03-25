@@ -8,4 +8,5 @@ class Datafile < ApplicationRecord
   belongs_to :user
   has_many :datum
   has_many :plot
+
 end

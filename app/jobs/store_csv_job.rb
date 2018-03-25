@@ -2,6 +2,12 @@ class StoreCsvJob < ApplicationJob
   require 'csv'
   queue_as :default
 
+  after_perform do |job|
+    datafile = Datafile.find_by(id: job.arguments.first)
+    datafile.reading = false
+    datafile.save
+  end
+
   def perform(datafile_id)
 
     datafile = Datafile.find_by(id: datafile_id)

@@ -26,6 +26,12 @@ class DatafilesController < ApplicationController
     end
   end
 
+  def destroy
+    Datafile.find_by(id: params[:id]).destroy
+    Datum.where(datafile_id: params[:id]).destroy_all
+    redirect_to datafiles_path
+  end
+
   private
   def datafile_params
     params.require(:datafile).permit(:name, :datafile)

@@ -1,0 +1,20 @@
+<script type="text/javascript">
+$(function() {
+  setInterval(function() {
+    console.log("executing")
+    $.getJSON(
+      '/api/datafiles',
+      null,
+      function(datum, status) {
+        $.each(datum, function(i, data) {
+          var id = data["id"]
+          console.log("#{id}")
+          if (data["reading"] === 'false') {
+            $("#reading-"+"#{id}").remove()
+          }
+        });
+      }
+    );
+  }, 3000);
+});
+</script>

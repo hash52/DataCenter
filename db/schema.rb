@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20180318001707) do
   create_table "datafiles", force: :cascade do |t|
     t.integer "user_id"
     t.string "name"
+    t.boolean "reading", default: true
     t.string "datafile"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
